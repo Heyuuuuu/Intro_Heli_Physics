@@ -13,9 +13,15 @@ namespace Intro_Heli_Physics
         public float m_MaxPitch = 30f;
         #endregion
 
+        #region Properties
+        private float currentRPMs;
+        public float CurrentRPMs { get => currentRPMs; }
+        #endregion
+
         #region override Methods
         public void UpdateRotor(float dps, Input_Controller input)
         {
+            currentRPMs = (dps / 360) * 60f;
             transform.Rotate(Vector3.up, dps * Time.deltaTime);
 
             m_LRotor.transform.localRotation = Quaternion.Euler(-input.StickCollectiveInput * m_MaxPitch, 0, 0);

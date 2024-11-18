@@ -6,7 +6,10 @@ namespace Intro_Heli_Physics
     public class Heli_Characteristics:MonoBehaviour
     {
         #region Variables
+        [Header("Lift Properties")]
+        public float maxListForce = 100f;
 
+        public HeliMain_Rotors mainRotors;
         #endregion
 
         #region Builtin Methods
@@ -34,8 +37,12 @@ namespace Intro_Heli_Physics
 
         protected virtual void HandleLift(Rigidbody rb, Input_Controller input)
         {
-            Vector3 liftForce = Physics.gravity.magnitude * rb.mass * transform.up;
-            rb.AddForce(liftForce, ForceMode.Force);
+            if(mainRotors)
+            {
+                float normalizedRPMs = mainRotors.CurrentRPMs / 500f;
+                Vector3 liftForce = (Physics.gravity.magnitude * rb.mass + maxListForce) * transform.up;
+                rb.AddForce(liftForce * Mathf.Pow(input.StickCollectiveInput, 2f) * Mathf.Pow(normalizedRPMs, 2f), ForceMode.Force);
+            }
         }
 
         protected virtual void HandleCyclic()
