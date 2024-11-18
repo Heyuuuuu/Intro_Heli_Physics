@@ -10,12 +10,14 @@ namespace Intro_Heli_Physics
         protected float rawThrottleInput = 0f;
         protected float stickyThrottle = 0f;
         protected float collectiveInput = 0f;
+        protected float stickyCollectiveInput = 0f;
         protected Vector2 cyclicInput = Vector2.zero;
         protected float pedalInput = 0f;
 
         public float RawThrottleInput { get => rawThrottleInput; }
         public float StickThrottle { get => stickyThrottle; }
         public float CollectiveInput { get => collectiveInput; }
+        public float StickCollectiveInput { get => stickyCollectiveInput; }
         public Vector2 CyclicInput { get => cyclicInput; }
         public float PedalInput { get => pedalInput; }
         #endregion
@@ -30,6 +32,7 @@ namespace Intro_Heli_Physics
 
             ClampInput();
             HandleStickyThrottle();
+            HandleStickyCollective();
         }
 
         protected virtual void HandleThrottle()
@@ -66,6 +69,13 @@ namespace Intro_Heli_Physics
         {
             stickyThrottle += rawThrottleInput * Time.deltaTime;
             stickyThrottle = Mathf.Clamp01(stickyThrottle);
+        }
+
+        protected void HandleStickyCollective()
+        {
+            stickyCollectiveInput += collectiveInput * Time.deltaTime;
+            stickyCollectiveInput = Mathf.Clamp01(stickyCollectiveInput);
+            //Debug.Log(stickyCollectiveInput);
         }
         #endregion
     }

@@ -30,12 +30,14 @@ namespace Intro_Heli_Physics
         private Vector2 m_Cyclic;
         private float m_Pedal;
         private float m_StickyThrottle;
+        private float m_StickCollectiveInput;
 
         public float Throttle { get => m_Throttle;}
         public float Collective { get => m_Collective;}
         public Vector2 Cyclic { get => m_Cyclic;}
         public float Pedal { get => m_Pedal;}
         public float StickyThrottle { get => m_StickyThrottle; }
+        public float StickCollectiveInput { get => m_StickCollectiveInput; }
 
 
         #endregion
@@ -60,6 +62,7 @@ namespace Intro_Heli_Physics
                         m_Cyclic = m_KeyboardInput.CyclicInput;
                         m_Pedal = m_KeyboardInput.PedalInput;
                         m_StickyThrottle = m_KeyboardInput.StickThrottle;
+                        m_StickCollectiveInput = m_KeyboardInput.StickCollectiveInput;
                         break;
 
                     case InputType.Xbox:
@@ -68,6 +71,8 @@ namespace Intro_Heli_Physics
                         m_Cyclic = m_XboxInput.CyclicInput;
                         m_Pedal = m_XboxInput.PedalInput;
                         m_StickyThrottle = m_XboxInput.StickThrottle;
+                        m_StickCollectiveInput = m_XboxInput.StickCollectiveInput;
+                       
                         break;
                 }
             }

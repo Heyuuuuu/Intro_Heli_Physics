@@ -16,6 +16,7 @@ namespace Intro_Heli_Physics
         [Header("Helicopter Rotors Controller")]
         public Heli_Rotor_Controller m_RotorController;
         private Input_Controller m_Input;
+        private Heli_Characteristics m_characteristics;
         #endregion
 
         #region BuiltIn Methods
@@ -23,6 +24,7 @@ namespace Intro_Heli_Physics
         {
             m_Input = GetComponent<Input_Controller>();
             rb.mass = m_weight;
+            m_characteristics = GetComponent<Heli_Characteristics>();
         }
         #endregion
 
@@ -39,7 +41,7 @@ namespace Intro_Heli_Physics
 
         protected virtual void HandleCharacteristics()
         {
-            
+            m_characteristics.UpdateCharacteristics(rb, m_Input);
         }
 
         protected virtual void HandleEngine()

@@ -18,8 +18,8 @@ namespace Intro_Heli_Physics
         {
             transform.Rotate(Vector3.up, dps * Time.deltaTime);
 
-            m_LRotor.transform.localRotation = Quaternion.Euler(input.Collective * m_MaxPitch, 0, 0);
-            m_RRotor.transform.localRotation = Quaternion.Euler(-input.Collective * m_MaxPitch, 0, 0);
+            m_LRotor.transform.localRotation = Quaternion.Euler(-input.StickCollectiveInput * m_MaxPitch, 0, 0);
+            m_RRotor.transform.localRotation = Quaternion.Euler(input.StickCollectiveInput * m_MaxPitch, 0, 0);
         }
         #endregion
 

@@ -36,6 +36,7 @@ public class Heli_Engine : MonoBehaviour
 
         float wantedRPM = throttleInput * m_MaxRPM;
         m_currentRPM = Mathf.Lerp(m_currentRPM, wantedRPM, Time.deltaTime * m_PowerDelay);
+        //Debug.Log(m_currentRPM);
     }
 
     #endregion
