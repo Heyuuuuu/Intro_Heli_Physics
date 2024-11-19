@@ -7,7 +7,7 @@ namespace Intro_Heli_Physics
     {
         #region Variables
         [Header("Lift Properties")]
-        public float maxListForce = 100f;
+        public float maxLiftForce = 100f;
 
         public HeliMain_Rotors mainRotors;
         #endregion
@@ -40,8 +40,10 @@ namespace Intro_Heli_Physics
             if(mainRotors)
             {
                 float normalizedRPMs = mainRotors.CurrentRPMs / 500f;
-                Vector3 liftForce = (Physics.gravity.magnitude * rb.mass + maxListForce) * transform.up;
-                rb.AddForce(liftForce * Mathf.Pow(input.StickCollectiveInput, 2f) * Mathf.Pow(normalizedRPMs, 2f), ForceMode.Force);
+                Vector3 liftForce = (Physics.gravity.magnitude * rb.mass + maxLiftForce) * transform.up;
+                //rb.AddForce(liftForce * Mathf.Pow(input.StickCollectiveInput, 2f) * Mathf.Pow(normalizedRPMs, 2f), ForceMode.Force);
+
+                rb.AddForce(liftForce * Mathf.Pow(normalizedRPMs, 2f), ForceMode.Force);
             }
         }
 
