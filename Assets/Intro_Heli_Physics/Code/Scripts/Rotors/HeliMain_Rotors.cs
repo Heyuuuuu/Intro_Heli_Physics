@@ -24,8 +24,8 @@ namespace Intro_Heli_Physics
             currentRPMs = (dps / 360) * 60f;
             transform.Rotate(Vector3.up, dps * Time.deltaTime);
 
-            m_LRotor.transform.localRotation = Quaternion.Euler(-input.StickCollectiveInput * m_MaxPitch, 0, 0);
-            m_RRotor.transform.localRotation = Quaternion.Euler(input.StickCollectiveInput * m_MaxPitch, 0, 0);
+            m_LRotor.transform.localRotation = Quaternion.Euler(-input.StickyCollectiveInput * m_MaxPitch, 0, 0);
+            m_RRotor.transform.localRotation = Quaternion.Euler(input.StickyCollectiveInput * m_MaxPitch, 0, 0);
         }
         #endregion
 

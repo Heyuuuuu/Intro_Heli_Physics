@@ -48,7 +48,7 @@ namespace Intro_Heli_Physics
         {
             foreach(Heli_Engine engine in m_Engines)
             {
-                engine.UpdateEngine(m_Input.Throttle);
+                engine.UpdateEngine(m_Input.StickyThrottle);
             }
         }
 

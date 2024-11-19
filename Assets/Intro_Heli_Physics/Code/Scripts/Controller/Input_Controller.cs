@@ -37,7 +37,7 @@ namespace Intro_Heli_Physics
         public Vector2 Cyclic { get => m_Cyclic;}
         public float Pedal { get => m_Pedal;}
         public float StickyThrottle { get => m_StickyThrottle; }
-        public float StickCollectiveInput { get => m_StickCollectiveInput; }
+        public float StickyCollectiveInput { get => m_StickCollectiveInput; }
 
 
         #endregion
@@ -94,6 +94,11 @@ namespace Intro_Heli_Physics
                 m_KeyboardInput.enabled = false;
                 m_XboxInput.enabled = true;
             }
+        }
+
+        private void AutoBalanceCollective()
+        {
+
         }
         #endregion
     }

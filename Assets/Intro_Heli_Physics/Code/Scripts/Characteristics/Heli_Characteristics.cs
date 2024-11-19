@@ -9,6 +9,8 @@ namespace Intro_Heli_Physics
         [Header("Lift Properties")]
         public float maxLiftForce = 100f;
 
+        public float maxRotorTourque = 10f;
+
         public HeliMain_Rotors mainRotors;
         #endregion
 
@@ -32,18 +34,19 @@ namespace Intro_Heli_Physics
         {
             HandleLift(rb, input);
             HandleCyclic();
-            HandlePedals();
+            HandlePedals(rb, input);
         }
 
         protected virtual void HandleLift(Rigidbody rb, Input_Controller input)
         {
             if(mainRotors)
             {
-                float normalizedRPMs = mainRotors.CurrentRPMs / 500f;
+                float normalizedRPMs = mainRotors.CurrentRPMs / 300f;
                 Vector3 liftForce = (Physics.gravity.magnitude * rb.mass + maxLiftForce) * transform.up;
-                //rb.AddForce(liftForce * Mathf.Pow(input.StickCollectiveInput, 2f) * Mathf.Pow(normalizedRPMs, 2f), ForceMode.Force);
-
-                rb.AddForce(liftForce * Mathf.Pow(normalizedRPMs, 2f), ForceMode.Force);
+                Vector3 final = liftForce * input.StickyCollectiveInput * Mathf.Pow(normalizedRPMs, 2f);
+                //Debug.Log(final.ToString());
+                //Debug.Log(normalizedRPMs);
+                rb.AddForce(final, ForceMode.Force);
             }
         }
 
@@ -52,9 +55,9 @@ namespace Intro_Heli_Physics
 
         }
 
-        protected virtual void HandlePedals()
+        protected virtual void HandlePedals(Rigidbody rb, Input_Controller input)
         {
-
+            rb.AddTorque(transform.up * input.Pedal * maxRotorTourque);
         }
 
         #endregion

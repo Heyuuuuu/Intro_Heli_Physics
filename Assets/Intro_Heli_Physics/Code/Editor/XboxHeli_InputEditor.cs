@@ -6,8 +6,8 @@ using System;
 
 namespace Intro_Heli_Physics
 {
-    [CustomEditor(typeof(KeyboardHeli_Input))]
-    public class KeyboardHeli_InputEditor : Editor
+    [CustomEditor(typeof(XboxHeli_Input))]
+    public class XboxHeli_InputEditor : Editor
     {
         KeyboardHeli_Input m_heli_Input;
 
@@ -31,7 +31,9 @@ namespace Intro_Heli_Physics
 
             EditorGUI.indentLevel++;
             EditorGUILayout.LabelField("Throttle: "+m_heli_Input.RawThrottleInput.ToString("0.00"),EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("StickThrottle: " + m_heli_Input.StickThrottle.ToString("0.00"), EditorStyles.boldLabel);
             EditorGUILayout.LabelField("Collective: " + m_heli_Input.CollectiveInput.ToString("0.00"), EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("StickCollective: " + m_heli_Input.StickThrottle.ToString("0.00"), EditorStyles.boldLabel);
             EditorGUILayout.LabelField("Cyclic: " + m_heli_Input.CyclicInput.ToString("0.00"), EditorStyles.boldLabel);
             EditorGUILayout.LabelField("Pedal: " + m_heli_Input.PedalInput.ToString("0.00"), EditorStyles.boldLabel);
             EditorGUI.indentLevel--;
